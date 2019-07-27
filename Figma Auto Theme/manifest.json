@@ -1,0 +1,7 @@
+{
+  "name": "Figma Auto Theme",
+  "id": "736312465646242485",
+  "api": "0.6.0",
+  "main": "code.js",
+  "ui": "ui.html"
+}

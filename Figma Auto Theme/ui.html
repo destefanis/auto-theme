@@ -1,0 +1,18 @@
+<h2>Auto Theme</h2>
+<!-- <p>Count: <input id="count" value="5"></p> -->
+<button id="theme">Theme</button>
+<button id="cancel">Cancel</button>
+<script>
+
+document.getElementById('theme').onclick = () => {
+  // const textbox = document.getElementById('count');
+  // const count = parseInt(textbox.value, 10);
+
+  parent.postMessage({ pluginMessage: { type: 'update-theme' } }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>

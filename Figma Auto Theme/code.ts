@@ -111,16 +111,17 @@ figma.ui.onmessage = msg => {
       case 'ELLIPSE':
       case 'POLYGON':
       case 'STAR':
+      case 'FRAME':
       case 'VECTOR': {
         // Check to see if the node has a style
         if (node.fillStyleId) {
           // Fetch the style by using the ID.
           let style = figma.getStyleById(node.fillStyleId);
           replaceStyles(node, style, backgroundColorMappings);
-          // console.log(style.name);
-          // console.log(style.key);
+          console.log(style);
         } else if (node.backgroundStyleId) {
-          let style = figma.getStyleById(node.fillStyleId);
+          let style = figma.getStyleById(node.backgroundStyleId);
+          console.log(style);
           replaceBackground(node, style, backgroundColorMappings);
         }
         break
@@ -179,7 +180,7 @@ figma.ui.onmessage = msg => {
 
         newStyle.then(function(object) {
           // Update the current style with the mapping.
-          node.fillStyleId = object.id;
+          node.backgroundStyleId = object.id;
         });
       }
     });

@@ -120,7 +120,7 @@ figma.ui.onmessage = msg => {
           // console.log(style.name);
           // console.log(style.key);
         } else if (node.backgroundStyleId) {
-          let style = figma.getStyleById(node.backgroundStyleId);
+          let style = figma.getStyleById(node.fillStyleId);
           replaceBackground(node, style, backgroundColorMappings);
         }
         break
@@ -132,11 +132,10 @@ figma.ui.onmessage = msg => {
         }
       }
       case 'COMPONENT': {
+        // Todo change component instance
         console.log('its a component');
       }
       default: {
-        // Look for fills on node types that have fills. An alternative would be to do `if ('fills' in node) { ... }
-        // node.fills = paintStyle.paints; (for no style)
         // not supported, silently do nothing
       }
     }
@@ -149,25 +148,18 @@ figma.ui.onmessage = msg => {
     // Once the promise is resolved, then see if the
     // key matches anything in the mappings object.
     importedStyle.then((object) => {
-
       // If it's null, no mapping exists yet.
-      if (mappings[object.key] !== null) {
+      if (mappings[object.key] !== undefined) {
         let mappingStyle = mappings[object.key];
+      
+        // Use the mapping value to fetch the official style.
+        let newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
 
-        if ((typeof mappingStyle.mapsToKey) === undefined) {
-          console.log('no mapping');
-          console.log(object.name);
-        } else {
-          // Use the mapping value to fetch the official style.
-          let newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
-
-          newStyle.then(function(object) {
-            // Update the current style with the mapping.
-            node.fillStyleId = object.id;
-          });
-        }
+        newStyle.then(function(object) {
+          // Update the current style with the mapping.
+          node.fillStyleId = object.id;
+        });
       }
-
     });
   }
 
@@ -178,25 +170,18 @@ figma.ui.onmessage = msg => {
     // Once the promise is resolved, then see if the
     // key matches anything in the mappings object.
     importedStyle.then((object) => {
-
       // If it's null, no mapping exists yet.
-      if (mappings[object.key] !== null) {
+      if (mappings[object.key] !== undefined) {
         let mappingStyle = mappings[object.key];
+      
+        // Use the mapping value to fetch the official style.
+        let newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
 
-        if ((typeof mappingStyle.mapsToKey) === undefined) {
-          console.log('no mapping');
-          console.log(object.name);
-        } else {
-          // Use the mapping value to fetch the official style.
-          let newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
-
-          newStyle.then(function(object) {
-            // Update the current style with the mapping.
-            node.fillStyleId = object.id;
-          });
-        }
+        newStyle.then(function(object) {
+          // Update the current style with the mapping.
+          node.fillStyleId = object.id;
+        });
       }
-
     });
   }
 

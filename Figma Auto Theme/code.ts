@@ -2,9 +2,9 @@ figma.showUI(__html__);
 
 const backgroundColorMappings = {
   '4b93d40f61be15e255e87948a715521c3ae957e6': {
-      name: 'Primary Dark / 600',
-      mapsToName: 'White',
-      mapsToKey: '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0',
+    name: 'Primary Dark / 600',
+    mapsToName: 'White',
+    mapsToKey: '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0',
   },
   'fb1358e5bd6dec072801298238cf49ff77b79a4b': {
     name: 'Primary Dark (Extra) / 630',
@@ -35,9 +35,9 @@ const backgroundColorMappings = {
 
 const textColorMappings = {
   '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0': {
-      name: 'White',
-      mapsToName: 'Primary Light / 800',
-      mapsToKey: '370a0bccfffafd7491e0ba96bc5985d013a75c3b',
+    name: 'White',
+    mapsToName: 'Primary Light / 800',
+    mapsToKey: '370a0bccfffafd7491e0ba96bc5985d013a75c3b',
   },
   '5c77a96137b698b5575557c069cabd6877d66e1e': {
     name: 'Primary Dark / 200',
@@ -80,12 +80,12 @@ figma.ui.onmessage = msg => {
       const frameNodes = figma.currentPage.children;
 
       const allNodes = figma.currentPage.findAll();
-      console.log(allNodes);
     }
     else if (figma.currentPage.selection.length === 1) {
 
       // Find all the nodes
       let allNodes = figma.currentPage.selection[0].findAll();
+      allNodes.unshift(figma.currentPage.selection[0]);
 
       // Update the nodes
       allNodes.map(selected => updateTheme(selected));
@@ -107,6 +107,10 @@ figma.ui.onmessage = msg => {
 
   function updateTheme(node) {
     switch (node.type) {
+      case 'COMPONENT': {
+        // console.log('component');
+      }
+      case 'INSTANCE':
       case 'RECTANGLE':
       case 'ELLIPSE':
       case 'POLYGON':
@@ -118,10 +122,8 @@ figma.ui.onmessage = msg => {
           // Fetch the style by using the ID.
           let style = figma.getStyleById(node.fillStyleId);
           replaceStyles(node, style, backgroundColorMappings);
-          console.log(style);
         } else if (node.backgroundStyleId) {
           let style = figma.getStyleById(node.backgroundStyleId);
-          console.log(style);
           replaceBackground(node, style, backgroundColorMappings);
         }
         break
@@ -131,10 +133,6 @@ figma.ui.onmessage = msg => {
           let style = figma.getStyleById(node.fillStyleId);
           replaceStyles(node, style, textColorMappings);
         }
-      }
-      case 'COMPONENT': {
-        // Todo change component instance
-        console.log('its a component');
       }
       default: {
         // not supported, silently do nothing

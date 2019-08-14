@@ -1,4 +1,4 @@
-figma.showUI(__html__);
+figma.showUI(__html__, {width: 380, height: 390});
 
 const backgroundColorMappings = {
   '4b93d40f61be15e255e87948a715521c3ae957e6': {
@@ -78,8 +78,8 @@ figma.ui.onmessage = msg => {
     // If nothing is selected update the whole page
     if (figma.currentPage.selection.length === 0) {
       const frameNodes = figma.currentPage.children;
-
       const allNodes = figma.currentPage.findAll();
+      allNodes.map(selected => updateTheme(selected));
     }
     else if (figma.currentPage.selection.length === 1) {
 
@@ -107,14 +107,13 @@ figma.ui.onmessage = msg => {
 
   function updateTheme(node) {
     switch (node.type) {
-      case 'COMPONENT': {
-        // console.log('component');
-      }
+      case 'COMPONENT':
       case 'INSTANCE':
       case 'RECTANGLE':
       case 'ELLIPSE':
       case 'POLYGON':
       case 'STAR':
+      case 'LINE':
       case 'FRAME':
       case 'VECTOR': {
         // Check to see if the node has a style
@@ -140,6 +139,7 @@ figma.ui.onmessage = msg => {
     }
   }
 
+  // Replaces fills with corresponding styles
   function replaceStyles(node, style, mappings) {
     // Find the style the ID corresponds to in the team library
     let importedStyle = figma.importStyleByKeyAsync(style.key);
@@ -162,6 +162,7 @@ figma.ui.onmessage = msg => {
     });
   }
 
+  // Updates backgrounds with styles
   function replaceBackground(node, style, mappings) {
     // Find the style the ID corresponds to in the team library
     let importedStyle = figma.importStyleByKeyAsync(style.key);

@@ -36,6 +36,11 @@ const backgroundColorMappings = {
     mapsToName: 'Primary Light / 400',
     mapsToKey: '66d3de3ff4b9f3fc4a10f0705a334ba56466ded7',
   },
+  'fa698aa2a724522a7c29efb0a662aec75a1be5a1': {
+    name: 'Primary Dark / 500',
+    mapsToName: 'Primary Light / 500',
+    mapsToKey: '7d8703ec132ddaf6968f6d190d1e80031c559d7c',
+  },
   '25b165222f45fd70dc3c8e68d1a25f8d379a597d': {
     name: 'Brand / 500',
     mapsToName: 'Brand / 500',

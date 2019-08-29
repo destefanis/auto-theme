@@ -1,4 +1,4 @@
-figma.showUI(__html__);
+figma.showUI(__html__, { width: 380, height: 390 });
 var backgroundColorMappings = {
     '4b93d40f61be15e255e87948a715521c3ae957e6': {
         name: 'Primary Dark / 600',
@@ -7,8 +7,13 @@ var backgroundColorMappings = {
     },
     'fb1358e5bd6dec072801298238cf49ff77b79a4b': {
         name: 'Primary Dark (Extra) / 630',
-        mapsToName: 'Primary Light / 100',
-        mapsToKey: '46601f1d3613f37b63a53b6fd80fdb1fb09bb863'
+        mapsToName: 'Primary Light / 130',
+        mapsToKey: '83704278c845a6a7ceb1f837387972ccb6d41960'
+    },
+    '287463bade90c1eed5ea4cb0b5d63794daa8aec2': {
+        name: 'Primary Dark / 300',
+        mapsToName: 'Primary Light / 600',
+        mapsToKey: '9c23a031773711e026394f4354661c37ee5b4682'
     },
     'ef179b6abe6cb8779857e05a6333d33f7a2b9320': {
         name: 'Primary Dark / 700',
@@ -29,13 +34,30 @@ var backgroundColorMappings = {
         name: 'Primary Dark / 400',
         mapsToName: 'Primary Light / 400',
         mapsToKey: '66d3de3ff4b9f3fc4a10f0705a334ba56466ded7'
+    },
+    '25b165222f45fd70dc3c8e68d1a25f8d379a597d': {
+        name: 'Brand / 500',
+        mapsToName: 'Brand / 500',
+        mapsToKey: '25b165222f45fd70dc3c8e68d1a25f8d379a597d'
+    }
+};
+var buttonColorMappings = {
+    '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0': {
+        name: 'White',
+        mapsToName: 'White',
+        mapsToKey: '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0'
+    },
+    '25b165222f45fd70dc3c8e68d1a25f8d379a597d': {
+        name: 'Brand / 500',
+        mapsToName: 'Brand / 500',
+        mapsToKey: '25b165222f45fd70dc3c8e68d1a25f8d379a597d'
     }
 };
 var textColorMappings = {
     '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0': {
         name: 'White',
-        mapsToName: 'Primary Light / 800',
-        mapsToKey: '370a0bccfffafd7491e0ba96bc5985d013a75c3b'
+        mapsToName: 'Primary Light / 900',
+        mapsToKey: '620c98e8f9255a6107dee91745669e5b702b413c'
     },
     '5c77a96137b698b5575557c069cabd6877d66e1e': {
         name: 'Primary Dark / 200',
@@ -74,11 +96,12 @@ figma.ui.onmessage = function (msg) {
         if (figma.currentPage.selection.length === 0) {
             var frameNodes = figma.currentPage.children;
             var allNodes = figma.currentPage.findAll();
-            console.log(allNodes);
+            allNodes.map(function (selected) { return updateTheme(selected); });
         }
         else if (figma.currentPage.selection.length === 1) {
             // Find all the nodes
             var allNodes = figma.currentPage.selection[0].findAll();
+            allNodes.unshift(figma.currentPage.selection[0]);
             // Update the nodes
             allNodes.map(function (selected) { return updateTheme(selected); });
         }
@@ -96,10 +119,14 @@ figma.ui.onmessage = function (msg) {
     }
     function updateTheme(node) {
         switch (node.type) {
+            case 'COMPONENT':
+            case 'INSTANCE':
             case 'RECTANGLE':
             case 'ELLIPSE':
             case 'POLYGON':
             case 'STAR':
+            case 'LINE':
+            case 'BOOLEAN_OPERATION':
             case 'FRAME':
             case 'VECTOR': {
                 // Check to see if the node has a style
@@ -107,11 +134,9 @@ figma.ui.onmessage = function (msg) {
                     // Fetch the style by using the ID.
                     var style = figma.getStyleById(node.fillStyleId);
                     replaceStyles(node, style, backgroundColorMappings);
-                    console.log(style);
                 }
                 else if (node.backgroundStyleId) {
                     var style = figma.getStyleById(node.backgroundStyleId);
-                    console.log(style);
                     replaceBackground(node, style, backgroundColorMappings);
                 }
                 break;
@@ -122,15 +147,12 @@ figma.ui.onmessage = function (msg) {
                     replaceStyles(node, style, textColorMappings);
                 }
             }
-            case 'COMPONENT': {
-                // Todo change component instance
-                console.log('its a component');
-            }
             default: {
                 // not supported, silently do nothing
             }
         }
     }
+    // Replaces fills with corresponding styles
     function replaceStyles(node, style, mappings) {
         // Find the style the ID corresponds to in the team library
         var importedStyle = figma.importStyleByKeyAsync(style.key);
@@ -140,6 +162,9 @@ figma.ui.onmessage = function (msg) {
             // If it's null, no mapping exists yet.
             if (mappings[object.key] !== undefined) {
                 var mappingStyle = mappings[object.key];
+                // if (mappingStyle = '25b165222f45fd70dc3c8e68d1a25f8d379a597d') {
+                //   correctButtonStyles(node, buttonColorMappings);
+                // }
                 // Use the mapping value to fetch the official style.
                 var newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
                 newStyle.then(function (object) {
@@ -149,6 +174,13 @@ figma.ui.onmessage = function (msg) {
             }
         });
     }
+    // function correctButtonStyles(node, mappings) {
+    //   console.log('found');
+    //   console.log(node.parent);
+    //   console.log(node.parent.name);
+    //   console.log(node.parent.children);
+    // }
+    // Updates backgrounds with styles
     function replaceBackground(node, style, mappings) {
         // Find the style the ID corresponds to in the team library
         var importedStyle = figma.importStyleByKeyAsync(style.key);

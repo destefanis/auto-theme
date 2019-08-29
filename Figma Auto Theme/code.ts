@@ -8,8 +8,13 @@ const backgroundColorMappings = {
   },
   'fb1358e5bd6dec072801298238cf49ff77b79a4b': {
     name: 'Primary Dark (Extra) / 630',
-    mapsToName: 'Primary Light / 100',
-    mapsToKey: '46601f1d3613f37b63a53b6fd80fdb1fb09bb863',
+    mapsToName: 'Primary Light / 130',
+    mapsToKey: '83704278c845a6a7ceb1f837387972ccb6d41960',
+  },
+  '287463bade90c1eed5ea4cb0b5d63794daa8aec2': {
+    name: 'Primary Dark / 300',
+    mapsToName: 'Primary Light / 600',
+    mapsToKey: '9c23a031773711e026394f4354661c37ee5b4682',
   },
   'ef179b6abe6cb8779857e05a6333d33f7a2b9320': {
     name: 'Primary Dark / 700',
@@ -30,14 +35,32 @@ const backgroundColorMappings = {
     name: 'Primary Dark / 400',
     mapsToName: 'Primary Light / 400',
     mapsToKey: '66d3de3ff4b9f3fc4a10f0705a334ba56466ded7',
+  },
+  '25b165222f45fd70dc3c8e68d1a25f8d379a597d': {
+    name: 'Brand / 500',
+    mapsToName: 'Brand / 500',
+    mapsToKey: '25b165222f45fd70dc3c8e68d1a25f8d379a597d',
+  }
+}
+
+const buttonColorMappings = {
+  '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0': {
+    name: 'White',
+    mapsToName: 'White',
+    mapsToKey: '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0',
+  },
+  '25b165222f45fd70dc3c8e68d1a25f8d379a597d': {
+    name: 'Brand / 500',
+    mapsToName: 'Brand / 500',
+    mapsToKey: '25b165222f45fd70dc3c8e68d1a25f8d379a597d',
   }
 }
 
 const textColorMappings = {
   '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0': {
     name: 'White',
-    mapsToName: 'Primary Light / 800',
-    mapsToKey: '370a0bccfffafd7491e0ba96bc5985d013a75c3b',
+    mapsToName: 'Primary Light / 900',
+    mapsToKey: '620c98e8f9255a6107dee91745669e5b702b413c',
   },
   '5c77a96137b698b5575557c069cabd6877d66e1e': {
     name: 'Primary Dark / 200',
@@ -114,6 +137,7 @@ figma.ui.onmessage = msg => {
       case 'POLYGON':
       case 'STAR':
       case 'LINE':
+      case 'BOOLEAN_OPERATION':
       case 'FRAME':
       case 'VECTOR': {
         // Check to see if the node has a style
@@ -147,10 +171,15 @@ figma.ui.onmessage = msg => {
     // Once the promise is resolved, then see if the
     // key matches anything in the mappings object.
     importedStyle.then((object) => {
+
       // If it's null, no mapping exists yet.
       if (mappings[object.key] !== undefined) {
         let mappingStyle = mappings[object.key];
-      
+        
+        // if (mappingStyle = '25b165222f45fd70dc3c8e68d1a25f8d379a597d') {
+        //   correctButtonStyles(node, buttonColorMappings);
+        // }
+
         // Use the mapping value to fetch the official style.
         let newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
 
@@ -161,6 +190,13 @@ figma.ui.onmessage = msg => {
       }
     });
   }
+
+  // function correctButtonStyles(node, mappings) {
+  //   console.log('found');
+  //   console.log(node.parent);
+  //   console.log(node.parent.name);
+  //   console.log(node.parent.children);
+  // }
 
   // Updates backgrounds with styles
   function replaceBackground(node, style, mappings) {

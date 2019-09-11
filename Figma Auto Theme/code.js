@@ -138,9 +138,12 @@ figma.ui.onmessage = function (msg) {
                 if (node.fillStyleId) {
                     // Fetch the style by using the ID.
                     var style = figma.getStyleById(node.fillStyleId);
+                    // Pass in the layer we want to change, the style the node has
+                    // and the set of mappings we want to check against.
                     replaceStyles(node, style, backgroundColorMappings);
                 }
                 else if (node.backgroundStyleId) {
+                    // Some elements have backgrounds instead of fills.
                     var style = figma.getStyleById(node.backgroundStyleId);
                     replaceBackground(node, style, backgroundColorMappings);
                 }
@@ -153,7 +156,7 @@ figma.ui.onmessage = function (msg) {
                 }
             }
             default: {
-                // not supported, silently do nothing
+                // do nothing
             }
         }
     }
@@ -167,9 +170,6 @@ figma.ui.onmessage = function (msg) {
             // If it's null, no mapping exists yet.
             if (mappings[object.key] !== undefined) {
                 var mappingStyle = mappings[object.key];
-                // if (mappingStyle = '25b165222f45fd70dc3c8e68d1a25f8d379a597d') {
-                //   correctButtonStyles(node, buttonColorMappings);
-                // }
                 // Use the mapping value to fetch the official style.
                 var newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
                 newStyle.then(function (object) {
@@ -179,26 +179,14 @@ figma.ui.onmessage = function (msg) {
             }
         });
     }
-    // function correctButtonStyles(node, mappings) {
-    //   console.log('found');
-    //   console.log(node.parent);
-    //   console.log(node.parent.name);
-    //   console.log(node.parent.children);
-    // }
-    // Updates backgrounds with styles
+    // Updates backgrounds with styles @todo combine this function with replaceStyles
     function replaceBackground(node, style, mappings) {
-        // Find the style the ID corresponds to in the team library
         var importedStyle = figma.importStyleByKeyAsync(style.key);
-        // Once the promise is resolved, then see if the
-        // key matches anything in the mappings object.
         importedStyle.then(function (object) {
-            // If it's null, no mapping exists yet.
             if (mappings[object.key] !== undefined) {
                 var mappingStyle = mappings[object.key];
-                // Use the mapping value to fetch the official style.
                 var newStyle = figma.importStyleByKeyAsync(mappingStyle.mapsToKey);
                 newStyle.then(function (object) {
-                    // Update the current style with the mapping.
                     node.backgroundStyleId = object.id;
                 });
             }

@@ -7,7 +7,7 @@
 
   body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, Roboto, sans-serif;
   }
 
   .h1 {
@@ -16,6 +16,7 @@
     padding: 0;
     text-align: left;
     font-size: 1.4em;
+    font-weight: 500;
   }
 
   .h1, .p {
@@ -39,7 +40,7 @@
     font-size: 1em;
     padding: 8px;
     line-height: 32px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     text-align: center;
     border-radius: 4px;
     color: #18191C;
@@ -60,41 +61,6 @@
     margin-right: 4px;
     background: #7289DA;
     color: #fff;
-  }
-
-  .warning-message {
-    display: inline-block;
-    position: relative;
-    margin-top: -4px;
-    cursor: pointer;
-  }
-
-  .warning-icon {
-    display: inline-block;
-    fill: #b3b3b3;
-    margin-bottom: -5px;
-  }
-
-  .warning-message:hover::after {
-    opacity: 1;
-    display: block;
-  }
-
-  .warning-message::after {
-    content: '';
-    background-image: url('https://pbs.twimg.com/media/DYRsANOU0AA0skQ?format=jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    display: none;
-    top: -250px;
-    left: 15%;
-    height: 250px;
-    width: 250px;
-    color: #b3b3b3;
-    opacity: 0;
-    transition: opacity 200ms ease;
   }
 </style>
   
@@ -137,30 +103,12 @@
   <div class="button-wrapper">
     <button class="cta" id="theme">Theme</button>
   </div>
-
-  <div class="warning">
-    <svg class="warning-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
-        <g>
-          <rect y="0.001" fill="none" width="24" height="24"></rect>
-        </g>
-        <g>
-            <path fill="#757575" d="M21.707,11.294l-9-9c-0.391-0.391-1.023-0.391-1.414,0l-9,9c-0.391,0.39-0.391,1.023,0,1.414l9,9   C11.488,21.903,11.744,22,12,22s0.512-0.098,0.707-0.293l9-9C22.098,12.317,22.098,11.684,21.707,11.294z M11,8h2v6h-2V8z    M12,17.25c-0.69,0-1.25-0.559-1.25-1.25c0-0.69,0.56-1.25,1.25-1.25s1.25,0.56,1.25,1.25C13.25,16.691,12.69,17.25,12,17.25z"></path>
-        </g>
-    </svg>
-    <span class="warning-message">
-      Safety goggles highly recommended.
-    </span>
-  </div>
 </div>
 
 <script>
 
 document.getElementById('theme').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'update-theme' } }, '*')
-}
-
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
 }
 
 </script>

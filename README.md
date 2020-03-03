@@ -1,5 +1,7 @@
 # Auto Theme
 
+![alt text](https://github.com/destefanis/auto-theme/blob/master/assets/Auto%20Theme%20Art.png?raw=true "Auto Theme Cover Art")
+
 A figma plugin for automatically theming your designs from one color mapping to another. This was built specifically for use by the Discord design team.
 
 ## How it works
@@ -9,23 +11,25 @@ A figma plugin for automatically theming your designs from one color mapping to 
 * It then imports that style from our main library using `figma.importStyleByKeyAsync`
 * Once we have that styles `key` then we match it to the styles object, and update that node with a new color.
 
+![alt text](https://github.com/destefanis/auto-theme/blob/master/assets/auto-theme-example.gif?raw=true "Auto Theme Gif Example")
+
 ## Theme Object
 
-Themes are objects with key value pairs to handle how we map each color to another corresponding color.
+Themes are objects with key value pairs to handle how we map each color to another corresponding color. [See example theme](https://github.com/destefanis/auto-theme/blob/master/src/plugin/example-theme.ts).
 
-`'4b93d40f61be15e255e87948a715521c3ae957e6': {
+```'4b93d40f61be15e255e87948a715521c3ae957e6': {
     name: "Dark / Header / Primary (White)",
     mapsToName: "Light / Header / Primary (900)",
     mapsToKey: '3eddc15e90bbd7064aea7cc13dc13e23a712f0b0',
-  },`
+  },```
   
 The first string of numbers is our `style.key` which in our design system is called "Dark / Header / Primary (White)". This color in light theme is "Light / Header / Primary (900)", so we replace our first key with the `mapsToKey` string. Swapping one style key for another.
 
-`"style_key_goes_here": {
+```"style_key_goes_here": {
     name: "",
     mapsToKey: "style_key_to_switch_with_goes_here",
     mapsToName: "",
-  },`
+  },```
 
 This does mean you'll need to know the `keys` of each of your styles.
 
@@ -33,11 +37,11 @@ This does mean you'll need to know the `keys` of each of your styles.
 
 Some of your designs may use components like the status bar on iOS. In order to solve for this, the plugin allows you to swap instances of components.
 
-`"component_key_goes_here": {
+```"component_key_goes_here": {
     name: "",
     mapsToKey: "component_key_to_switch_with_goes_here",
     mapsToName: "",
-  },`
+  },```
 
 This way if you'd like to switch `iPhone X Status Bar / Dark` with `iPhone X Status Bar / Light` rather than try and theme them, you can. Only instances will check to see if it's parent component is listed in the themes you've declared, otherwise it will be treated normally.
 
@@ -45,7 +49,7 @@ This way if you'd like to switch `iPhone X Status Bar / Dark` with `iPhone X Sta
 I built [Inspector Plugin](https://www.figma.com/community/plugin/760351147138040099) for this very reason.
 
 ### Can I use multiple themes?
-Yes, create a new theme and import it, then hook up a button in the UI to send a message to the controller.ts to
+Yes, create a new theme and import it, then hook up a button in the UI to send a message to the [controller.ts](https://github.com/destefanis/auto-theme/blob/master/src/plugin/controller.ts#L60) to
 call that theme. There are two examples of this in the code already.
 
 

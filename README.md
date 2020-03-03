@@ -56,7 +56,7 @@ Some of your designs may use components like the status bar on iOS. In order to 
 
 This way if you'd like to switch `iPhone X Status Bar / Dark` with `iPhone X Status Bar / Light` rather than try and theme them, you can. Only instances will check to see if it's parent component is listed in the themes you've declared, otherwise it will be treated normally.
 
-### How do I find my style keys
+### How do I find my style keys?
 I built [Inspector Plugin](https://www.figma.com/community/plugin/760351147138040099) for this very reason.
 
 ### Can I use multiple themes?

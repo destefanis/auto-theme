@@ -176,6 +176,7 @@ figma.ui.onmessage = msg => {
     switch (node.type) {
       case "COMPONENT":
       case "RECTANGLE":
+      case "GROUP":
       case "ELLIPSE":
       case "POLYGON":
       case "STAR":

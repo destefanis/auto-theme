@@ -1,4 +1,5 @@
 // Themes are objects.
+// Using the "Inspector" plugin we've made pubic makes this process easier!
 
 const sampleTheme = {
   // Within the object, we check for a *style key*,

@@ -8,9 +8,25 @@ const darkTheme = {
     componentName: "iPhone X Home Indicator / Dark",
     mapsToKey: "0489bde7fd0346a97eff3170167714838a8ffb9c"
   },
+  e9622ab25248f31fb02b6faa00308b8faa4acb3e: {
+    componentName: "Header / Guild / Dark",
+    mapsToKey: "00230f03c08e00a787e9c2659c3165bcad7ae06b"
+  },
+  "4592fb98edf78fdeea07d23445de948286e7c5f2": {
+    componentName: "Header / DM",
+    mapsToKey: "ff8b5c71a60fc212647c40e481c0bf1886a3ec85"
+  },
   "46d6bed4edd9482b1452afab5ab0292b516c9e09": {
     componentName: "Navigation Tab / Dark",
     mapsToKey: "64d16554561a7496b2d23854074ce923655918e0"
+  },
+  "9e0a9f99024fb9baedcacbb123c84d7cc4b8f87a": {
+    componentName: "Guild Selected / Dark",
+    mapsToKey: "a9231a3d9fac5b7d26d56904c7b28d5d00bfff97"
+  },
+  c25d89953041d095215c972fa55dc6f7776d9a54: {
+    componentName: "Messages Selected / Dark",
+    mapsToKey: "8c80d5bd7bdd80acec9793a719f6caaebba1c6ee"
   },
   // Android System Components
   "3588fe4d5a302b2fca2be2b0cb5c12e2a2f41c05": {
@@ -97,13 +113,18 @@ const darkTheme = {
   },
   "3dd0e30ce0a8287eb91ec1fbeff92031e634ed01": {
     name: "Dark / Background / Accent (500)",
-    mapsToName: "Light / Interactive Text & Icons / Muted (300)",
-    mapsToKey: "9328cd78a39149b070d68f98d9fe4df7a92bf67d"
+    mapsToName: "Light / Background / Accent (500)",
+    mapsToKey: "7a199ce029a847f3a361dfb6a6e0ee4e4ba84d4f"
   },
   "11516f4b43f381afb5a6bdf2c34b9437f0eecde1": {
     name: "Dark / Background / Floating (800)",
     mapsToName: "Light / Background / Floating (White)",
     mapsToKey: "6c8b08a42f9614842e880bf7bb795014d8fbae94"
+  },
+  bfcdf063eb2c1edb446ba5d7880da6a324cc9b4f: {
+    name: "Dark / Override / Read Channels",
+    mapsToName: "Light / Override / Read Channels 360",
+    mapsToKey: "634ef95b53ab529a774f27ed16be07c0b3fb3a5f"
   },
   // Background Modifiers
   d6c9270834b11c99ee651f0f5072ad2c63701165: {

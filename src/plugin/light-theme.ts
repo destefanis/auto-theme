@@ -8,13 +8,29 @@ const lightTheme = {
     componentName: "iPhone X Home Indicator / Light",
     mapsToKey: "5b8dce7a790466da546d319a69f5de220e1a66f1"
   },
-  "64d16554561a7496b2d23854074ce923655918e0": {
+  "46d6bed4edd9482b1452afab5ab0292b516c9e09": {
     componentName: "Navigation Tab / Light",
-    mapsToKey: "46d6bed4edd9482b1452afab5ab0292b516c9e09"
+    mapsToKey: "64d16554561a7496b2d23854074ce923655918e0"
+  },
+  "00230f03c08e00a787e9c2659c3165bcad7ae06b": {
+    componentName: "Header / Guild / Light",
+    mapsToKey: "e9622ab25248f31fb02b6faa00308b8faa4acb3e"
+  },
+  "4592fb98edf78fdeea07d23445de948286e7c5f2": {
+    componentName: "Header / DM",
+    mapsToKey: "ff8b5c71a60fc212647c40e481c0bf1886a3ec85"
   },
   "790d7d3d884a6d3dadc79bf3c48a4918f4c16ba7": {
     componentName: "Status Bar / Light",
     mapsToKey: "3588fe4d5a302b2fca2be2b0cb5c12e2a2f41c05"
+  },
+  a9231a3d9fac5b7d26d56904c7b28d5d00bfff97: {
+    componentName: "Guild Selected / Light",
+    mapsToKey: "9e0a9f99024fb9baedcacbb123c84d7cc4b8f87a"
+  },
+  "8c80d5bd7bdd80acec9793a719f6caaebba1c6ee": {
+    componentName: "Messages Selected / Light",
+    mapsToKey: "c25d89953041d095215c972fa55dc6f7776d9a54"
   },
   bd56c3e89162d8274c4ca591f2ca1e1064658570: {
     componentName: "Navigation Tab / Dark",
@@ -86,6 +102,16 @@ const lightTheme = {
     name: "Light / Background / Tertiary (200)",
     mapsToName: "Dark / Background / Tertiary (700)",
     mapsToKey: "ef179b6abe6cb8779857e05a6333d33f7a2b9320"
+  },
+  "7a199ce029a847f3a361dfb6a6e0ee4e4ba84d4f": {
+    name: "Light / Background / Accent (500)",
+    mapsToName: "Dark / Background / Accent (500)",
+    mapsToKey: "3dd0e30ce0a8287eb91ec1fbeff92031e634ed01"
+  },
+  "634ef95b53ab529a774f27ed16be07c0b3fb3a5f": {
+    name: "Light / Override / Read Channels 360",
+    mapsToName: "Dark / Override / Read Channels",
+    mapsToKey: "bfcdf063eb2c1edb446ba5d7880da6a324cc9b4f"
   },
   "6c8b08a42f9614842e880bf7bb795014d8fbae94": {
     name: "Light / Background / Floating (White)",

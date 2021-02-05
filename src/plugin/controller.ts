@@ -175,6 +175,7 @@ figma.ui.onmessage = msg => {
   function updateTheme(node, theme) {
     switch (node.type) {
       case "COMPONENT":
+      case "COMPONENT_SET":
       case "RECTANGLE":
       case "GROUP":
       case "ELLIPSE":

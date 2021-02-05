@@ -4,17 +4,26 @@
 
 A figma plugin for automatically theming your designs from one color mapping to another. This was built specifically for use by the Discord design team.
 
+## How to run locally
+* Run `yarn` to install dependencies.
+* Run `yarn build:watch` to start webpack in watch mode.
+
+⭐ To change the UI of your plugin (the react code), start editing [App.tsx](./src/app/components/App.tsx).  
+⭐ To interact with the Figma API edit [controller.ts](./src/plugin/controller.ts).  
+⭐ Read more on the [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/).
+
 ## How to use this plugin with your team
 * Follow the instructions for running locally
-* In Figma, create a plugin and select this Auto Theme plugin manifest file
-* Then hit publish internally
+* Set up your own themes, see the examples below in the Theme Object section.
+* In Figma, create a plugin and select this Auto Theme plugin manifest file.
+* Upload the plugin images from the asset directory, then hit publish internally.
 
 ## How it works
 * When a frame or multiple frames are selected the code loops through each layer.
 * During the loop, the layer checks to see what "type" the layer is (text, vector, rectangle etc). This allows us to skip certain nodes and handle mappings different for text and shapes.
 * If the layer has a fill, it fetches that nodes Style ID using `figma.getStyleById`.
 * It then imports that style from our main library using `figma.importStyleByKeyAsync`
-* Once we have that styles `key` then we match it to the styles object, and update that node with a new color.
+* Once we have that styles `key` then we check to see if it has a match in one of our theme objects, if it has a match we update that node with a new color.
 
 ![alt text](https://github.com/destefanis/auto-theme/blob/master/assets/auto-theme-example.gif?raw=true "Auto Theme Gif Example")
 
@@ -42,6 +51,9 @@ The first string of numbers is our `style.key` which in our design system is cal
 
 This does mean you'll need to know the `keys` of each of your styles.
 
+### How do I find my style keys?
+I built [Inspector Plugin](https://www.figma.com/community/plugin/760351147138040099) for this very reason.
+
 ### Instance Switching
 
 Some of your designs may use components like the status bar on iOS. In order to solve for this, the plugin allows you to swap instances of components.
@@ -56,21 +68,9 @@ Some of your designs may use components like the status bar on iOS. In order to 
 
 This way if you'd like to switch `iPhone X Status Bar / Dark` with `iPhone X Status Bar / Light` rather than try and theme them, you can. Only instances will check to see if it's parent component is listed in the themes you've declared, otherwise it will be treated normally.
 
-### How do I find my style keys?
-I built [Inspector Plugin](https://www.figma.com/community/plugin/760351147138040099) for this very reason.
-
 ### Can I use multiple themes?
 Yes, create a new theme and import it, then hook up a button in the UI to send a message to the [controller.ts](https://github.com/destefanis/auto-theme/blob/master/src/plugin/controller.ts#L60) to
 call that theme. There are two examples of this in the code already.
-
-
-## How to run locally
-* Run `yarn` to install dependencies.
-* Run `yarn build:watch` to start webpack in watch mode.
-
-⭐ To change the UI of your plugin (the react code), start editing [App.tsx](./src/app/components/App.tsx).  
-⭐ To interact with the Figma API edit [controller.ts](./src/plugin/controller.ts).  
-⭐ Read more on the [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/).
 
 ## Toolings
 This repo is using:

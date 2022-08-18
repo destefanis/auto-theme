@@ -9,6 +9,14 @@ const lightTheme = {
     componentName: "iPhone X Home Indicator / Light",
     mapsToKey: "5b8dce7a790466da546d319a69f5de220e1a66f1"
   },
+  "867fa47defeb07293aa37e5467e4ca487019dd78": {
+    componentName: "System (Light) / Numeric Keyboard",
+    mapsToKey: "3ee4cf479eefd5e181ff4abd1c982011438e692d"
+  },
+  bca69f03db8e938cd78ca91c84e35553804ca8c1: {
+    componentName: "System (Light) / Keyboard",
+    mapsToKey: "e4dcbeb8549332e4c969ef4d0d302e75a7932c25"
+  },
   "46d6bed4edd9482b1452afab5ab0292b516c9e09": {
     componentName: "Navigation Tab / Light",
     mapsToKey: "64d16554561a7496b2d23854074ce923655918e0"

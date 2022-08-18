@@ -9,6 +9,14 @@ const darkTheme = {
     componentName: "iPhone X Home Indicator / Dark",
     mapsToKey: "0489bde7fd0346a97eff3170167714838a8ffb9c"
   },
+  "3ee4cf479eefd5e181ff4abd1c982011438e692d": {
+    componentName: "System (Dark) / Numeric Keyboard",
+    mapsToKey: "867fa47defeb07293aa37e5467e4ca487019dd78"
+  },
+  e4dcbeb8549332e4c969ef4d0d302e75a7932c25: {
+    componentName: "System (Dark) / Keyboard",
+    mapsToKey: "bca69f03db8e938cd78ca91c84e35553804ca8c1"
+  },
   e9622ab25248f31fb02b6faa00308b8faa4acb3e: {
     componentName: "Header / Guild / Dark",
     mapsToKey: "00230f03c08e00a787e9c2659c3165bcad7ae06b"

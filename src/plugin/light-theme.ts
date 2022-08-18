@@ -1,3 +1,4 @@
+// For mapping from light to dark theme.
 const lightTheme = {
   // Components
   "33425bd93c1b8cea071df9b5297f0b19583a643b": {
@@ -90,6 +91,11 @@ const lightTheme = {
   // Backgrounds
   "2449a2983d43793d80baa20c6c60e8a48e7f3a0c": {
     name: "Light / Background / Primary (White)",
+    mapsToName: "Dark / Background / Primary (600)",
+    mapsToKey: "4b93d40f61be15e255e87948a715521c3ae957e6"
+  },
+  "#ffffff": {
+    name: "White Background",
     mapsToName: "Dark / Background / Primary (600)",
     mapsToKey: "4b93d40f61be15e255e87948a715521c3ae957e6"
   },

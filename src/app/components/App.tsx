@@ -79,11 +79,11 @@ const App = ({}) => {
     };
   }, []);
 
-  const listItems = skippedLayers.map(node => (
+  const listItems = skippedLayers.map((node, index) => (
     <ListItem
       activeLayer={activeLayer}
       onClick={handleLayerSelect}
-      key={node.id}
+      key={index}
       node={node}
     />
   ));

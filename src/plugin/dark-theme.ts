@@ -1,3 +1,4 @@
+// For mapping from dark to light theme.
 const darkTheme = {
   // Components (swaps instances rather ie Name / Dark to Name / Light)
   f0d4aa5e63fff4392e3b3c22884523369f5d0424: {

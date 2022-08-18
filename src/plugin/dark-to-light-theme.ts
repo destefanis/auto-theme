@@ -157,12 +157,12 @@ const darkTheme = {
     mapsToName: "Light / Background / Primary (White)",
     mapsToKey: "2449a2983d43793d80baa20c6c60e8a48e7f3a0c"
   },
-  "frame #36393F": {
+  "frame #36393f": {
     name: "Dark Primary Background",
     mapsToName: "Light / Background / Primary (White)",
     mapsToKey: "2449a2983d43793d80baa20c6c60e8a48e7f3a0c"
   },
-  "rectangle #36393F": {
+  "rectangle #36393f": {
     name: "Dark Primary Background",
     mapsToName: "Dark / Background / Primary (600)",
     mapsToKey: "2449a2983d43793d80baa20c6c60e8a48e7f3a0c"

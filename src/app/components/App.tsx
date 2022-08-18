@@ -74,7 +74,6 @@ const App = ({}) => {
           ...skippedLayers,
           ...unthemedLayers
         ]);
-        setActiveTab("layers");
       }
     };
   }, []);

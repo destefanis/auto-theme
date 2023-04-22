@@ -4,8 +4,8 @@
 	"description": "This plugin template uses Typescript. If you are familiar with Javascript, Typescript will look very familiar. In fact, valid Javascript code is already valid Typescript code.",
 	"license": "ISC",
 	"scripts": {
-		"build": "/usr/local/bin/node node_modules/.bin/webpack --mode=production",
-		"build:watch": "/usr/local/bin/node node_modules/.bin/webpack --mode=development --watch",
+		"build": "webpack --mode=production",
+		"build:watch": "webpack --mode=development --watch",
 		"prettier:format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,json}' "
 	},
 	"dependencies": {
